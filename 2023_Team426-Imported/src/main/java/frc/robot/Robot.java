@@ -19,7 +19,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 // import com.ctre.phoenix.motorcontrol.TalonSRXFeedbackDevice;
 // import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-// import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -27,17 +27,18 @@ import edu.wpi.first.wpilibj.TimedRobot;
 // import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 
-// import edu.wpi.first.wpilibj.util.Color;
-// import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+import edu.wpi.first.wpilibj.I2C;
 
-// import com.revrobotics.ColorSensorV3;
-// import com.revrobotics.ColorMatch;
-// import com.revrobotics.ColorMatchResult;
-// // import com.revrobotics.*;
+import com.revrobotics.ColorSensorV3;
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
 
 import edu.wpi.first.wpilibj.DutyCycle;
+// import com.revrobotics.*;
+
 
 public class Robot extends TimedRobot {
   private DifferentialDrive m_myRobot;
@@ -46,7 +47,7 @@ public class Robot extends TimedRobot {
 
   //Define controllers.
   private XboxController gamepadDrive;
-  // private XboxController gamepadOperator;
+  private XboxController gamepadOperator;
 
 
   private WPI_TalonSRX leftMotorControllerCIM1;
@@ -120,7 +121,7 @@ public class Robot extends TimedRobot {
   private double robotHeading;
 
   private DutyCycle controller;
-
+  
   //Pixy variables
   //private Pixy2 pixy;
 
@@ -144,10 +145,11 @@ public class Robot extends TimedRobot {
 
 //Set up the two Xbox controllers. The drive is for driving, the operator is for all conveyor and color wheel controls
       gamepadDrive = new XboxController(0);
-      // gamepadOperator = new XboxController(1);
+      gamepadOperator = new XboxController(1);
 
-controller = new DutyCycle(1);
+      controller = new DutyCycle(1);
 
+     
 //Set up conveyor motor controllers
 //       conveyorMotorCIM1 = new WPI_VictorSPX(6);
 //       conveyorMotorCIM2 = new WPI_VictorSPX(7);
@@ -179,12 +181,12 @@ controller = new DutyCycle(1);
 
 
 //Set up encoders on the left and right sides of the drive
-
-      leftMotorControllerCIM2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder); 
-      leftMotorControllerCIM2.setSensorPhase(true);
-      leftMotorControllerCIM2.setSelectedSensorPosition(0);
-      rightMotorControllerCIM1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder); 
-      rightMotorControllerCIM1.setSelectedSensorPosition(0);
+//
+//       leftMotorControllerCIM2.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder); 
+//       leftMotorControllerCIM2.setSensorPhase(true);
+//       leftMotorControllerCIM2.setSelectedSensorPosition(0);
+//       rightMotorControllerCIM1.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder); 
+//       rightMotorControllerCIM1.setSelectedSensorPosition(0);
 
 //Set up the Pigeon
 //       pigeonIMU = new PigeonIMU(leftMotorControllerCIM1); // that is leftMotorControllerCIM1 = new WPI_TalonSRX(0)
@@ -221,7 +223,7 @@ controller = new DutyCycle(1);
 //This line sends things to the smart dashboard. We can use this to get any information we might want from the system.
     SmartDashboard.putNumber("leftMotor", leftMotorControllerCIM1.get());
     SmartDashboard.putNumber("rightMotor", rightMotorControllerCIM1.get());
-    SmartDashboard.putNumber("controller", controller.getOutput());    
+    SmartDashboard.putNumber("controller", controller.getOutput());
 //     SmartDashboard.putNumber("conveyorMotor", conveyorMotorCIM1.get());
 //     SmartDashboard.putNumber("climbMotor", climbMotorCIM1.get());
 //     SmartDashboard.putBoolean("climbMotorEnabled",climbMotorEnabled);
@@ -244,8 +246,8 @@ controller = new DutyCycle(1);
 //     SmartDashboard.putNumber("numberOfColorChanges", numberOfColorChanges);
 
     //Show robot position data from encoders and Pigeon IMU
-    SmartDashboard.putNumber("leftEncoder",leftEncoderReading);
-    SmartDashboard.putNumber("rightEncoder",rightEncoderReading);
+//     SmartDashboard.putNumber("leftEncoder",leftEncoderReading);
+//     SmartDashboard.putNumber("rightEncoder",rightEncoderReading);
     //Nam - your code goes in the next line. Talk to Leo if you need help.
     SmartDashboard.putNumber("Robot Heading",robotHeading);
 //**********CONVEYOR CONTROL**********//
