@@ -407,6 +407,9 @@ else{
     //We want to reset both the number and stageTwoComplete because we probably didn't get the rotation count right for stage two. 
     numberOfColorChanges = 0;
     stageTwoComplete = false;
+//When a button is clicked, drive the robot in half a second, slightly move it. 
+    if (m_timer.get() < 0.5)
+	m_myRobot.arcadeDrive(0.5, 0.0)
   }
 
   //**********CLIMB MOTOR CONTROL**********//
